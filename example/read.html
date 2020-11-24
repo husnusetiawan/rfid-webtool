@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Read</title>
+</head>
+<body>
+    <span>Tap RFID tag to read data!</span>
+    <table cellspacing="0" cellpadding="10" border="1">
+        <thead>
+            <tr>
+                <th>Data 1</th>
+                <th>Data 2</th>
+                <th>Data 3</th>
+                <th>Data 4</th>
+                <th>Data 5</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+
+        <tbody >&nbsp;
+        </tbody>
+    </table>
+
+
+    <script src="../dist/rwt.min.js"></script>
+    <script >
+        Rwt.initWidget()
+        Rwt.connect()
+        Rwt.read((valid, data) => {
+            document.getElementsByTagName("tbody")[0].innerHTML += "<tr>"+
+                "<td>"+data[0]+"</td>"+
+                "<td>"+data[1]+"</td>"+
+                "<td>"+data[2]+"</td>"+
+                "<td>"+data[3]+"</td>"+
+                "<td>"+data[4]+"</td>"+
+                "<td>"+new Date()+"</td>"+
+            "</tr>"
+        })
+    </script>
+</body>
+</html>

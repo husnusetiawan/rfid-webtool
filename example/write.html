@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Write</title>
+</head>
+<body>
+    <span>Input data written to RFID tag</span>
+    <table cellspacing="0" cellpadding="10">
+            <tr>
+                <th>Data 1</th>
+                <td><input type="text" id="data1" /></td>
+            </tr>
+            <tr>
+                <th>Data 2</th>
+                <td><input type="text" id="data2" /></td>
+            </tr>
+            <tr>
+                <th>Data 3</th>
+                <td><input type="text" id="data3" /></td>
+            </tr>
+            
+                <th>Data 4</th>
+                <td><input type="text" id="data4" /></td>
+            </tr>
+            
+                <th>Data 5</th>
+                <td><input type="text" id="data5" /></td>
+            
+            </tr>
+        </tbody>
+    </table>
+    <button id="button" >WRITE DATA</button>
+    <p id="message-ready-write" hidden>Data Ready, Tap RFID Tag!</p>
+
+
+    <script src="../dist/rwt.min.js"></script>
+    <script >
+        Rwt.initWidget()
+        Rwt.connect()
+        
+        document.getElementById("button").onclick = () => {
+            var data = []
+            data[0] = document.getElementById("data1").value
+            data[1] = document.getElementById("data2").value
+            data[2] = document.getElementById("data3").value
+            data[3] = document.getElementById("data4").value
+            data[4] = document.getElementById("data5").value
+            Rwt.write(data, (status) => {
+                // ready callback
+                document.getElementById("message-ready-write").hidden = !status
+
+            }, (success) => {
+                // written sucessfully callback
+                if (success)
+                    alert("RFID Tag written successfully")
+                else
+                    alert("RFID Tag written not successfully")
+
+                document.getElementById("message-ready-write").hidden = true
+            })
+        }
+    </script>
+</body>
+</html>

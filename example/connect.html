@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Connect</title>
+</head>
+<body>
+    <span>Example code to connect device without widget</span>
+    <table cellspacing="0" cellpadding="10">
+            <tr>
+                <th>Status</th>
+                <td id="status"></td>
+            </tr>
+            <tr>
+                <th>IP Device</th>
+                <td><input type="text" id="ip" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button id="connect">Connect</button>
+
+    <script src="../dist/rwt.min.js"></script>
+    <script >
+
+        // get last ip device
+        document.getElementById("ip").value = Rwt.lastClientIp
+
+        // event state change 
+        Rwt.onStateChange = (state) => {
+            if (state == 1)
+                document.getElementById("status").innerHTML = "Connected"
+            else if (state == 2)
+                document.getElementById("status").innerHTML = "Connecting"
+            else if (state == 0)
+                document.getElementById("status").innerHTML = "Not Connected"
+        }
+
+        Rwt.connect()
+
+        document.getElementById("connect").onclick = () => {
+            var ip = document.getElementById("ip").value
+            Rwt.setClientIp(ip)
+            Rwt.connect()
+        }
+    </script>
+</body>
+</html>

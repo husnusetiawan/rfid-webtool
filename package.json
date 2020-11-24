@@ -1,0 +1,25 @@
+{
+  "name": "rfid-webtool",
+  "version": "1.0.0",
+  "description": "Library Javascript For RFID WebTool™",
+  "dependencies": {},
+  "devDependencies": {
+    "uglify-es": "^3.3.9"
+  },
+  "scripts": {
+    "build": "uglifyjs src/rwt.js --output dist/rwt.min.js  --verbose --compress "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/husnusetiawan/rfid-webtool.git"
+  },
+  "keywords": [
+    "rfid"
+  ],
+  "author": "husnusetiawan",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/husnusetiawan/rfid-webtool/issues"
+  },
+  "homepage": "https://github.com/husnusetiawan/rfid-webtool#readme"
+}
