@@ -42,7 +42,7 @@ function RwtUi(rwt){
     const render = () => {
         document.getElementById("widget-rwt-ui-content").innerHTML = " Status: <b class='state-"+rwt.state+"'>" + rwt.getStatus()+"</b>"+
         "  Device: "+
-        "<input type='text' id='widget-rwt-ui-connect-ip-address' value='"+rwt.lastClientIp+"' />"
+        "<input type='text' style='width:100px' id='widget-rwt-ui-connect-ip-address' value='"+rwt.lastClientIp+"' />"
         ;
     }
 
@@ -84,8 +84,12 @@ function RwtClass(){
         var NOT_CONNECTED = this.NOT_CONNECTED
         var self = this
         let lastClientIp = this.lastClientIp
-        if (!lastClientIp)
+        
+        if (!lastClientIp){
+            this.lastClientIp = ""
+            self.onUiUpdate()
             return
+        }
 
         if (this.connection != null && this.connection.readyState == 1)
             this.connection.close()
